@@ -1,4 +1,8 @@
-# gulp简单介绍 —— 庞伟湛PAM ##
+---
+title: gulp简单介绍
+date: 2016-01-03 23:09:57
+tags:
+---
 
 #### *目录*
 1. gulp简介
@@ -11,8 +15,6 @@
 1. 我认为的文件目录结构 —— app, build*
 1. 我的gulpfile.js详解
 1. 寻找好用的gulp插件 —— cnpmjs.org
-
-<hr>
 
 ### 1. gulp简介 ###
 gulp是前端开发过程中对代码进行构建的工具，是自动化项目的构建利器；它不仅能对网站资源进行优化（例如压缩/丑化，打包等），还能让我们在开发中很多重复性工作自动完成，可谓是我们前端人员开发的利器。使用它，我们不仅可以很愉快的编写代码，而且还大大的提高了我们的生产力。
@@ -164,7 +166,7 @@ gulp.js 的作者 [Eric Schoffstall](https://github.com/Contra) 在他介绍 gul
 	- `-g`意味着在全局范围内安装gulp插件。
 	- gulp插件会被安装在c盘下的global_modules中。
 	- 安装完成后，在电脑的任意npm项目中，我们都可以使用到所安装的gulp插件，意味着，gulp插件已经**全局化**了。
-1. `npm i gulp --save-dev`。 
+1. `npm i gulp --save-dev`。
 	- 命令执行完后，打开package.json，发现`"devDependencies"`下多了`"gulp": "^3.9.0"`这一项。
 	- `--save-dev`意味着我们会将gulp插件安装在开发依赖下，也就是"devDependencies"中了。
 1. `npm i gulp --save`。
@@ -198,7 +200,7 @@ gulp.js 的作者 [Eric Schoffstall](https://github.com/Contra) 在他介绍 gul
 **gulp的API非常简单，分别是：**
 
 1. gulp.src(globs[, options])：
-	1. 指明源文件路径 
+	1. 指明源文件路径
 1. gulp.dest(path):
 	1. 指明任务处理后的目标输出路径
 1. gulp.task(name[, deps], fn):
@@ -235,7 +237,7 @@ gulp.js 的作者 [Eric Schoffstall](https://github.com/Contra) 在他介绍 gul
 
 	// 例句
 	$ npm install <PLUGIN_NAME> --save-dev
-	
+
 	// 最终安装语句如下（批量安装）：
 	$ npm install gulp gulp-jshint gulp-concat gulp-uglify gulp-rename --save-dev
 
@@ -252,14 +254,14 @@ gulp.js 的作者 [Eric Schoffstall](https://github.com/Contra) 在他介绍 gul
 		concat = require('gulp-concat'),
 		uglify = require('gulp-uglify'),
 		rename = require('gulp-rename');
-	
+
 	// 任务'jshint'：语法检查
 	gulp.task('jshint', function () {
 	    return gulp.src('src/*.js')
 	        .pipe(jshint())
 	        .pipe(jshint.reporter('default'));
 	});
-	
+
 	// 任务'minify'：合并文件之后压缩代码
 	gulp.task('minify', function (){
 	     return gulp.src('src/*.js')
@@ -269,19 +271,19 @@ gulp.js 的作者 [Eric Schoffstall](https://github.com/Contra) 在他介绍 gul
 	        .pipe(rename('all.min.js'))
 	        .pipe(gulp.dest('dist'));
 	});
-	
+
 	// 任务'watch'：监视文件的变化
 	gulp.task('watch', function () {
 	    gulp.watch('src/*.js', ['jshint', 'minify']);
 	});
-	
+
 	// 任务'default'：注册缺省任务。
 	// **直接运行gulp而不附带任务名时，执行default任务**
 	gulp.task('default', ['jshint', 'minify', 'watch']);
 	```
 
 可以看出，基本上所有的任务体都是这么个模式：
-	
+
 	```javascript
 	gulp.task('任务名称', function () {
 	    return gulp.src( '文件' )
@@ -344,14 +346,14 @@ pipe 就是 stream 模块里负责传递流数据的方法而已，至于最开�
 > 1. html模板化，例如header和footer这类通用性的组件，我们从此可以直接导入即可，非常方便。同时，我们也可以实现**组件化开发**。</br>
 > 1. 通过ejs生成出来的文件，可以保持原有的编辑格式，通过拼凑的形式实现html的生成。强迫症的我从此不用再让妈妈担心啦~ </br>
 
-但是ejs也是有其缺点的，主要体现在其繁琐的变量书写格式上。`<% ... %>`尖括号与百分号结合的变量格式让我吐槽不已，比起`{{ ... }}`的双大括号格式，复杂了很多。
+但是ejs也是有其缺点的，主要体现在其繁琐的变量书写格式上。`<% ... %>`尖括号与百分号结合的变量格式让我吐槽不已，比起`{ { ... } }`的双大括号格式，复杂了很多。
 
 #### art template ####
 art template原先我是并不清楚的，经过勇哥介绍之后，我才恍如隔世的回去开始深入理解这一个html模板。研究结果如下：
 
 > 1. art template是由腾讯上海研究中心(没有猜错，即张鑫旭所在地)所创作的。</br>
 > 1. 本模板是通过js的方式进行编译，具有高性能、简洁易用的优点。(这是官方介绍，实际我并没有深入理解，如有偏颇，请不要打我。) </br>
-> 1. art template结合了ejs和jade的优点，在html标记化格式的基础之上，同时兼容`<% ... %>`和`{{ ... }}`的变量写法，我认为非常的方便。
+> 1. art template结合了ejs和jade的优点，在html标记化格式的基础之上，同时兼容`<% ... %>`和`{ { ... } }`的变量写法，我认为非常的方便。
 > 1. 关于art template这一块，在gulp上并没有很好的构建插件，只有一个没有介绍的gulp-arttemplate插件。由于没有介绍，无法知晓该插件的使用方法，因此作废。
 
 综上，最终选定使用ejs作为html模板，但是art template潜力巨大。
@@ -387,7 +389,7 @@ js
 			--- *.{ png, jpg, ... }
 	- /build			//存放构建后的文件
 		-- *.html			//ejs构建后生成的html文件
-		-- /css			
+		-- /css
 			--- *.css			// /style目录中的*.scss文件构建后存放与此
 		-- /js
 			--- *.js			//尚未实现构建，所有的js文件直接编辑并存放于此。
@@ -418,7 +420,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 		imagemin = require('gulp-imagemin'),
 		pngquant = require('imagemin-pngquant'),
 		cache = require('gulp-cache');
-	
+
 	// 更为推荐的写法。为每个任务配置一个config，包括src(源文件目录)，dest(目标文件目录)，fieldlist(为ejs而配), ...
 	// 同时推荐npm自带的插件path。它可以为我们的路径进行处理。
 	// __dirname是nodejs一运行就给出的变量，它代表着我们当前目录的位置。
@@ -442,7 +444,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 			dest: './build/images'
 		}
 	};
-	
+
 	// gulp中的help,主要输出指示性用法
 	gulp.task('help',function () {
 		console.log('	gulp 				完整打包并开始监听');
@@ -451,7 +453,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 		console.log('	gulp ejs			打包ejs');
 		console.log('	gulp sass			打包sass');
 	});
-	
+
 	// 编译ejs。因为ejs的每一个生成的页面都可以导入数据，但是目前还没有很好的导入方法。
 	// 说说我的做法：
 	//1、在项目根目录下编写一个ejsData.json的文件；
@@ -467,7 +469,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 				.pipe( livereload() );
 		}
 	});
-	
+
 	// 编译sass。这个算是一个意外，因为在本机，如果使用了gulp.src,则会报错，只能直接使用sass这个命令，将路径导入其中。
 	gulp.task('sass', function () {
 	    sass(config.sass.src, { compass: true, style: 'expanded' })
@@ -481,7 +483,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 			.pipe( gulp.dest(config.sass.dest) )
 			.pipe(livereload());
 	});
-	
+
 	// 因为网络的原因，暂时无法使用
 	// 最佳选择：直接使用gulp-imagemin。其中包括imagemin-pngquant, imagemin-jpegtran, imagemin-optipng等。
 	// 具体可以上www.npmjs.com搜索imagemin查看。
@@ -502,7 +504,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 	// 		.pipe(imageminPngquant({quality: '65-80', speed: 4})())
 	// 		.pipe(gulp.dest('build/images'));
 	// });
-	
+
 	// 这个是watch命令，是用以编辑我们所需要监听的任务
 	gulp.task('watch', function () {
 		livereload.listen();
@@ -513,7 +515,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 		// // watch image files
 		// gulp.watch( config.image.src, ['imagemin']);
 	})
-	
+
 	// 这个是为我们创建服务器的命令。port可以自定义设置。
 	gulp.task('connect', function() {
 		connect.server({
@@ -522,7 +524,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 			livereload: true
 		});
 	})
-	
+
 	// 这是'build'命令，创建它目的在于，将所有需要build的任务都集成在一起，方便编辑使用。
 	gulp.task('build', function () {
 		gulp.run('help');
@@ -530,7 +532,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 		gulp.run('ejs');
 		gulp.run('sass');
 	})
-	
+
 	// 这是default命令，是gulp默认的缺省任务，当只运行gulp时，默认执行它。
 	gulp.task('default', function () {
 		gulp.run('build');
@@ -540,7 +542,7 @@ PS:其中，经过我的机器与宇阳的机器两次的测试，插件`gulp-im
 
 <hr>
 
-path, 
+path,
 
 ### 10. 寻找好用的gulp插件 —— www.npmjs.com ###
 [gulp插件地址：http://gulpjs.com/plugins](http://gulpjs.com/plugins)
@@ -555,3 +557,5 @@ path,
 - - -
 **[www.cnpmjs.org](www.cnpmjs.org)。这个也是一个同类型的网站，当www.npmjs.com登陆不上时，我们可以通过它来搜索插件。**
 ![](http://i.imgur.com/6pjnGBX.png)
+
+

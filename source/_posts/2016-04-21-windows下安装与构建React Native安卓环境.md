@@ -1,4 +1,7 @@
-# Windows下安装React Native的安卓环境 #
+---
+title: Windows下安装React Native的安卓环境
+date: 2016-04-21 15:09:57
+tags: react-native
 ---
 
 ### 目录
@@ -233,3 +236,4 @@ http://csbun.github.io/blog/2015/12/starting-react-native-with-android/
 
 等等非常有用的选项。
 希望你们能够好好运用。^_^
+

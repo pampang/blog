@@ -1,4 +1,10 @@
-# # 参考文档
+---
+title: react-native创建android原生模块
+date: 2017-07-01 15:09:57
+tags: react-native
+---
+
+## 参考文档
 下文讲的非常详细，很多方法都说明了，仔细再看：
 http://www.liuchungui.com/blog/2016/05/08/reactnativezhi-yuan-sheng-mo-kuai-kai-fa-bing-fa-bu-androidpian/
 

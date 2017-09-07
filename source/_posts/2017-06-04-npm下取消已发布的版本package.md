@@ -1,3 +1,9 @@
+---
+title: npm下取消已发布的版本package
+date: 2017-06-04 15:09:57
+tags: npm
+---
+
 突然发现自己在npm package上，发布的一个版本居然出bug了！
 于是想要马上回退版本。
 
